@@ -10,20 +10,22 @@ foundWord = []
 incorrectAttempt = 3
 while True:
     letter = ''
+    foundall = True
     for i in randomWord:
         if i in foundWord:
             print(i,end='')
         else:
             print('_',end='')
+            foundall = False
     print('')
-    while len(letter)!=1:
+    while len(letter)!=1 and not foundall:
         letter = input('enter possible letter : ')
     if letter in randomWord and letter not in foundWord:
         foundWord.append(letter)
     else:
         incorrectAttempt -= 1
         print('Letter Not Found\nRemaining Attempts =',incorrectAttempt)
-    if len(foundWord) == len(randomWord):
+    if foundall:
         print('Congratulation You Got It All')
         break
     elif incorrectAttempt == 0:
