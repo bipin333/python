@@ -30,7 +30,7 @@ userDeposit = int(input('Enter your Initial Deposit : '))
 userBankAccount = BankAccount(userDeposit,userName)
 while True:
     choice = int(input('\n1.Deposit\n2.Withdraw\n3.Display Balance\n*.Exit\nchoice='))
-    if choice not in range(1,4+1):
+    if choice not in range(1,3+1):
         break
     else:
         if choice == 1:
@@ -39,5 +39,5 @@ while True:
         elif choice == 2:
             bal = int(input('Enter Balance to withdraw : '))
             userBankAccount.withdraw(bal)
-        if choice == 3:
+        elif choice == 3:
             userBankAccount.display()
