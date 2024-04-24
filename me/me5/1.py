@@ -29,7 +29,7 @@ class Complx:
         return f'{self.real}+{self.imag}i' if self.imag > 0 else f'{self.real}' # type: ignore
 print('Enter your choice')
 option = int(input('1.uninary + \n2.binary + \n3.less than\n4.greater than\nchoice : '))
-if option not in range(5):
+if option not in range(1,5):
     print('ERRR')
 else:
     if option == 1:

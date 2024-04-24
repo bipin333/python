@@ -4,12 +4,13 @@ each CRUD operation.
 """
 import csv
 fields = ['roll','student','age']
-def create_record(data):
+def create_record(records):
     f = open('data.csv','w',newline='')
     writer = csv.DictWriter(f, fieldnames=fields)
-    writer.writerows(data)
+    writer.writeheader()
+    writer.writerows(records)
     f.close()
-def read_record(data, roll):
+def read_record(roll):
     f = open('data.csv','r')
     reader = csv.DictReader(f,fieldnames=fields)
     for data in reader:
@@ -22,6 +23,38 @@ def update_record(data):
     writer = csv.DictWriter(f,fieldnames=fields)
     writer.writerow(data)
     f.close()
-def delete_record(data):
+def delete_record(roll):
     records = []
-    f = open('data.csv','a')
+    f = open('data.csv','r')
+    reader = csv.DictReader(f,fieldnames=fields)
+    for data in reader:
+        if data['roll'] != str(roll):
+            records.append(data)
+    f.close()
+    create_record(records)
+
+option = int(input('Select option\n1.Create Records\n2.Read Record\n3.Update Record\n4.Delete Record\nchoice = '))
+if option in range(1,5):
+    if option == 1:
+        num = int(input('How many records do you want : '))
+        records = []
+        for i in range(num):
+            data = {}
+            print('data',i+1)
+            for j in fields:
+                data[j] = input(f'Enter {j} :')
+            records.append(data)
+        create_record(records)
+    elif option == 2:
+        roll = input('Enter roll : ')
+        read_record(roll)
+    elif option == 3:
+        data = {}
+        for j in fields:
+            data[j] = input(f'Enter {j} :')
+        update_record(data)
+    elif option==4:
+        roll = input('Enter roll : ')
+        delete_record(roll)
+else:
+    print('ERR')
