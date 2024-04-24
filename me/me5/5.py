@@ -5,13 +5,13 @@ each CRUD operation.
 import csv
 fields = ['roll','student','age']
 def create_record(records):
-    f = open('data.csv','w',newline='')
+    f = open('amp.csv','w',newline='')
     writer = csv.DictWriter(f, fieldnames=fields)
     writer.writeheader()
     writer.writerows(records)
     f.close()
 def read_record(roll):
-    f = open('data.csv','r')
+    f = open('amp.csv','r')
     reader = csv.DictReader(f,fieldnames=fields)
     for data in reader:
         if data['roll'] == str(roll):
@@ -19,13 +19,13 @@ def read_record(roll):
                 print(f'{key} = {value}')
     f.close()
 def update_record(data):
-    f = open('data.csv','a',newline='')
+    f = open('amp.csv','a',newline='')
     writer = csv.DictWriter(f,fieldnames=fields)
     writer.writerow(data)
     f.close()
 def delete_record(roll):
     records = []
-    f = open('data.csv','r')
+    f = open('amp.csv','r')
     reader = csv.DictReader(f,fieldnames=fields)
     for data in reader:
         if data['roll'] != str(roll):
